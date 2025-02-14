@@ -44,15 +44,16 @@ def process_profile(text, fields=None):
 
     extractors = {
         "name": lambda text: extract_name(text),
-        "age": lambda text: extract_info("What is the age?", text),
-        "address": lambda text: extract_info("What is the address?", text),
-        "email": lambda text: extract_info("What is the email?", text),
-        "professions": lambda text: extract_info("What is the professions?", text),
-        "organizations": lambda text: extract_info("What is the organizations?", text),
+        "age": lambda text: extract_info("When the person was born?", text),
+        "phone": lambda text: extract_info("What is the phone number of the person?", text),
+        "address": lambda text: extract_info("What is the address of the person?", text),
+        "email": lambda text: extract_info("What is the email address of the person?", text),
+        "profession": lambda text: extract_info("List all professions or job titles associated with the person in the given text", text),
+        "organization": lambda text: extract_info("Which organization does this person work for?", text),
     }
 
     # neu fields None, mac dinh lay tat ca cac truong
-    if fields is None:
+    if fields is None or fields == "all":
         fields = extractors.keys()
 
     # trich xuat chi cac truong duoc yeu cau
@@ -66,7 +67,7 @@ def process_profile(text, fields=None):
     return json.dumps(result, indent=4)
     
 if __name__ == '__main__':
-    html_content = fetch_html("https://en.wikipedia.org/wiki/Stephen_Hawking")
+    html_content = fetch_html("https://vuhavan.com/profile/")
 
     soup = BeautifulSoup(html_content, "html.parser")
 
