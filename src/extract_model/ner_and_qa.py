@@ -1,23 +1,11 @@
 import json
-import requests
 import torch
 from transformers import pipeline
-from bs4 import BeautifulSoup
 
 device = 0 if torch.cuda.is_available() else -1
 ner_pipeline = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english", grouped_entities=True, device=device)
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-def fetch_html(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.text
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching URL: {e}")
-        return None
-    
-# ham lay ten
 def extract_name(text):
     entities = ner_pipeline(text)
     for entity in entities:
@@ -65,19 +53,3 @@ def process_profile(text, fields=None):
             result[field] = None # tra ve None neu truong khong hop le
 
     return json.dumps(result, indent=4)
-    
-if __name__ == '__main__':
-    html_content = fetch_html("https://vuhavan.com/profile/")
-
-    soup = BeautifulSoup(html_content, "html.parser")
-
-    text = soup.getText()
-
-    output_json = process_profile(text)
-    print(output_json)
-
-    del ner_pipeline
-    del qa_pipeline
-    del output_json
-
-    torch.cuda.empty_cache()
