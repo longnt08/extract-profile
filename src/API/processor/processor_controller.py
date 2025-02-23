@@ -12,17 +12,26 @@ es = ElasticClient()
 @router.post("/process")
 async def process(url: str):
     try:
-        parsed_html = await es.search_data("parsed_homepages", url)
+        query = {
+                "query": {
+                    "term": {
+                        "url": url
+                    }
+                }
+            }
+        parsed_html = await es.search_data(index="parsed_homepages", query=query)
 
         # neu da co, trich xuat thong tin
         if parsed_html["hits"]["total"]["value"] > 0:
             parsed_data = parsed_html["hits"]["hits"][0]["_source"]["body"]
+            doc_id = parsed_html["hits"]["hits"][0]["_id"]
             extracted_data = await processor_service.extract_profile(parsed_data)
 
             # luu thong tin da extract vao index 
-            doc_id = await processor_repository.save_extracted_info(url, extracted_data)
 
-            return JSONResponse(status_code=200, content={"extracted_homepages": extracted_data, "id": doc_id})
+            await processor_repository.save_extracted_info(url, doc_id, extracted_data)
+
+            return JSONResponse(status_code=200, content=extracted_data)
         else:
             return JSONResponse(status_code=404, content="This homepage have not been crawled yet.")
     

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Extract profile</title>
 </head>
 <body>
@@ -12,19 +13,24 @@
         <br><br>
         
         <label>Chọn các trường dữ liệu cần trích xuất:</label><br>
-        <input type="checkbox" name="fields" value="name">Name<br>
-        <input type="checkbox" name="fields" value="email">Email<br>
-        <input type="checkbox" name="fields" value="phone">Phone<br>
-        <input type="checkbox" name="fields" value="address">Address<br>
-        <input type="checkbox" name="fields" value="age">Age<br>
-        <input type="checkbox" name="fields" value="profession">Profession<br>
-        <input type="checkbox" name="fields" value="organization">Organization<br>
-        <input type="checkbox" name="fields" value="all">All<br><br>
-
+        <div class="checkBox-container">
+            <div class="checkBox1">
+                <input type="checkbox" name="fields" value="name">Name<br>
+                <input type="checkbox" name="fields" value="email">Email<br>
+                <input type="checkbox" name="fields" value="phone">Phone<br>
+                <input type="checkbox" name="fields" value="address">Address<br>
+            </div>
+            <div class="checkBox2">
+                <input type="checkbox" name="fields" value="age">Age<br>
+                <input type="checkbox" name="fields" value="profession">Profession<br>
+                <input type="checkbox" name="fields" value="organization">Organization<br>
+                <input type="checkbox" name="fields" value="all">All<br><br>
+            </div>
+        </div>
         <button type="submit">Extract</button>
     </form>
 
-    <h3>Kết quả: </h3>
+    <br><br>
     <div id="result"><div/>
 
     <script src="index.js"></script>

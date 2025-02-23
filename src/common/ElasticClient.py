@@ -7,16 +7,10 @@ class ElasticClient:
     async def insert_data(self, index, doc_id, data):
         await self.es.index(index=index, id=doc_id, document=data)
 
-    async def search_data(self, index, url):
+    async def search_data(self, index, query):
         return await self.es.search(
             index=index,
-            body={
-                "query": {
-                    "match": {
-                        "url": url
-                    }
-                }
-            }
+            body=query
         )
     
     async def close(self):

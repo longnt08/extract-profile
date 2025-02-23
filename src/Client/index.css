@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #717fc8;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 3% 0 2% 40%;
+}
+
+#entityForm {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="url"] {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-right: 5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.checkBox-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+button {
+    width: 60%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin-left: 20%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

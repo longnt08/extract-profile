@@ -36,7 +36,7 @@ def process_profile(text, fields=None):
         "phone": lambda text: extract_info("What is the phone number of the person?", text),
         "address": lambda text: extract_info("What is the address of the person?", text),
         "email": lambda text: extract_info("What is the email address of the person?", text),
-        "profession": lambda text: extract_info("List all professions or job titles associated with the person in the given text", text),
+        "profession": lambda text: extract_info("What is professions of the person?", text),
         "organization": lambda text: extract_info("Which organization does this person work for?", text),
     }
 

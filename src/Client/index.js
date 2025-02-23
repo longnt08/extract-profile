@@ -23,27 +23,38 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // send request by Fetch API
         try {
-            const response = await fetch(`http://127.0.0.1:8000/entityExtraction?${queryString}`, {
+            const response = await fetch(`http://127.0.0.1:8000/experts/search?${queryString}`, {
                 method: "GET",
             });
 
             const res = await response.json();
-            const resultData = JSON.parse(res);
+
+            const textRes = document.createElement("h3");
+            const resultToDisplay = document.getElementById("result");
+
+            textRes.innerText = "Kết quả";
+            resultToDisplay.innerHTML = "";
+            resultToDisplay.appendChild(textRes);
+
+                // them css
+                resultToDisplay.setAttribute(
+                    "style",
+                    "background-color: white; width: 320px; height: 300px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 10px 20px;"
+                );
 
             if(response.ok) {
-                console.log(resultData);
-                const resultToDisplay = document.getElementById("result");
-                resultToDisplay.innerHTML = "";
-                
+                console.log(res);
+
                 fields.forEach(field => {
                     console.log(field);
                     let fieldText = document.createElement('p');
-                    fieldText.innerHTML = `${field}: ${resultData[field] ?? "(Không có dữ liệu)"}`;
+                    fieldText.innerHTML = `${field}: ${res[field] ?? "(Không có dữ liệu)"}`;
                     resultToDisplay.appendChild(fieldText);
                 });
             } else {
-                alert(`Error: ${resultData.message}`);
+                resultToDisplay.innerText = res.message;
             }
+
         } catch(error) {
             console.error("An error occurred:", error);
             alert("An error occurred. Check your code.");

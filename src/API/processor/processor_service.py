@@ -1,6 +1,4 @@
 import json
-from typing import List
-from fastapi import Query
 from extract_model.ner_and_qa import process_profile
 
 class ProcessorService:
