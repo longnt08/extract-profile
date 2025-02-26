@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./src/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/API:/app
+    depends_on:
+      - elasticsearch
+  
+  client:
+    image: nginx:alpine
+    ports:
+      - "5500:80"
+    volumes:
+      - ./src/Client:/usr/share/nginx/html:ro
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.1
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"

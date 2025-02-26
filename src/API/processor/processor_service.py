@@ -1,5 +1,5 @@
 import json
-from extract_model.ner_and_qa import process_profile
+from API.extract_model.ner_and_qa import process_profile
 
 class ProcessorService:
     async def extract_profile(self, parsed_html: str) -> json:

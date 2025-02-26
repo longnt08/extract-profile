@@ -4,9 +4,8 @@ from fastapi import FastAPI, Query
 from common.ElasticClient import ElasticClient
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from API.crawler.crawler_controller import router as crawler_router
-from API.processor.processor_controller import router as processor_router
-import json
+from crawler.crawler_controller import router as crawler_router
+from processor.processor_controller import router as processor_router
 
 app = FastAPI()
 es = ElasticClient()

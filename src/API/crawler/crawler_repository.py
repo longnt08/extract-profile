@@ -1,5 +1,5 @@
 import uuid
-from common.ElasticClient import ElasticClient
+from API.common.ElasticClient import ElasticClient
 
 class CrawlerRepository:
     def __init__(self):

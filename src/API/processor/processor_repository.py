@@ -1,5 +1,5 @@
 import uuid
-from common.ElasticClient import ElasticClient
+from API.common.ElasticClient import ElasticClient
 
 class ProcessorRepository:
     def __init__(self):

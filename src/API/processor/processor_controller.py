@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from common.ElasticClient import ElasticClient
+from API.common.ElasticClient import ElasticClient
 from API.processor.processor_service import ProcessorService
 from API.processor.processor_repository import ProcessorRepository
 
