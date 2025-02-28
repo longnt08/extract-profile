@@ -16,8 +16,8 @@ async def crawl(url: str):
         if not content:
             raise HTTPException(status_code=404, detail="Can't get HTML data from this URL")
 
-        doc_id = await crawler_repo.save_raw_html(url, content)
-        await crawler_repo.save_parsed_html(doc_id, url, parsed_html)
+        doc_id = await crawler_repo.insert_raw_html(url, content)
+        await crawler_repo.insert_parsed_html(doc_id, url, parsed_html)
 
         return JSONResponse(status_code=200, content={"_id": doc_id})
     except Exception as e:
